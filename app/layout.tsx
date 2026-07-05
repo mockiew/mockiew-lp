@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ClarityProvider from "@/components/ClarityProvider";
+import { WaitlistProvider } from "@/context/WaitlistContext";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
@@ -88,10 +89,12 @@ export default function RootLayout({
          */
         className="flex min-h-full flex-col bg-[#faf8ff] text-[#131b2e]"
       >
-        <ClarityProvider />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <WaitlistProvider>
+          <ClarityProvider />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </WaitlistProvider>
       </body>
     </html>
   );

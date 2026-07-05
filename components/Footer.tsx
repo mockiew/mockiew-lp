@@ -27,7 +27,7 @@ export default function Footer() {
       <div
         className="
           mx-auto flex max-w-[80rem] flex-col items-center
-          gap-5 px-6 py-8
+          gap-6 px-6 py-8
           md:flex-row md:justify-between
         "
       >

@@ -4,6 +4,7 @@ import { useActionState, useEffect } from 'react';
 import { submitWaitlist } from '@/app/actions';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast, { Toaster } from 'react-hot-toast';
+import { useWaitlist } from '@/context/WaitlistContext';
 
 /* ─── Styles ─────────────────────────────────────────────────────────────── */
 const LABEL: React.CSSProperties = {
@@ -39,17 +40,19 @@ function inputStyle(): React.CSSProperties {
 /* ─── Component ──────────────────────────────────────────────────────────── */
 export function HeroForm() {
   const [state, formAction, isPending] = useActionState(submitWaitlist, null);
+  const { markSubmitted } = useWaitlist();
 
-  /* Confetti & Toasts — only run if JS successfully hydrates */
+  /* Confetti, Toasts & global state sync — only run if JS successfully hydrates */
   useEffect(() => {
     if (state?.success) {
+      markSubmitted(); // broadcast to Navbar & Footer via WaitlistContext
       import('canvas-confetti').then(({ default: confetti }) =>
         confetti({ particleCount: 80, spread: 80, origin: { y: 0.6 }, colors: ['#0040e0', '#b60055', '#e2e7ff'] })
       );
     } else if (state?.success === false) {
       toast.error(state.error);
     }
-  }, [state]);
+  }, [state, markSubmitted]);
 
   /* Focus glow via CSS class — works on all mobile browsers */
   const focusCss = `
@@ -155,6 +158,7 @@ export function HeroForm() {
                   target="_blank"
                   rel="noopener noreferrer"
                   id="discord-cta-btn"
+                  className="animate-shine"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -237,6 +241,7 @@ export function HeroForm() {
                   id="waitlist-submit-btn"
                   type="submit"
                   disabled={isPending}
+                  className="animate-shine"
                   style={{
                     width: '100%', borderRadius: '0.75rem', fontWeight: 600,
                     color: '#ffffff', border: 'none',

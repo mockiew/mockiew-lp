@@ -4,6 +4,9 @@ import { PainPoints } from '@/components/landing/PainPoints';
 import { Features } from '@/components/landing/Features';
 import { CtaBanner } from '@/components/landing/CtaBanner';
 
+/**
+ * Landing page.
+ */
 export default function Page() {
   return (
     <div className="bg-[#faf8ff] text-[#131b2e]">
