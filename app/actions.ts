@@ -5,7 +5,7 @@ import { createClient } from '@/utils/supabase/server';
 /* ─── Types ───────────────────────────────────────────────────────────────── */
 
 export type WaitlistState =
-  | { success: true }
+  | { success: true; name: string }
   | { success: false; error: string }
   | null;
 
@@ -88,7 +88,7 @@ export async function submitWaitlist(
       };
     }
 
-    return { success: true };
+    return { success: true, name };
   } catch (err) {
     console.error('[submitWaitlist] Unexpected error:', err);
     return {

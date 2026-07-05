@@ -128,14 +128,70 @@ export function HeroForm() {
                 className="success-container"
                 role="status"
                 aria-live="polite"
-                style={{ borderRadius: '1rem', padding: '2rem', textAlign: 'center', background: 'linear-gradient(135deg, #f2f3ff 0%, #ffffff 100%)', border: '1px solid #c4c5d9', boxShadow: '0 20px 48px rgba(0,64,224,0.09)' }}
+                style={{ borderRadius: '1rem', padding: '2rem 1.5rem', textAlign: 'center', background: 'linear-gradient(135deg, #f2f3ff 0%, #ffffff 100%)', border: '1px solid #c4c5d9', boxShadow: '0 20px 48px rgba(0,64,224,0.09)', width: '100%', maxWidth: '28rem', marginLeft: 'auto', marginRight: 'auto', boxSizing: 'border-box' }}
               >
+                {/* Celebration icon */}
                 <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '50%', background: '#e2e7ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', margin: '0 auto 1.25rem' }} aria-hidden="true">🎉</div>
-                <h2 style={{ fontFamily: 'Inter, sans-serif', color: '#131b2e', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.75rem' }}>You're on the list!</h2>
-                <p style={{ fontFamily: 'Inter, sans-serif', color: '#434656', fontSize: '0.9rem', lineHeight: 1.65 }}>
-                  We're rolling out our MVP features soon. Look out for an email asking what features you want most so we can tailor your{' '}
-                  <strong style={{ color: '#0040e0' }}>3 free 1-minute mock interview sessions!</strong>
+
+                {/* Personalised heading */}
+                <h2 style={{ fontFamily: 'Inter, sans-serif', color: '#131b2e', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.875rem', lineHeight: 1.35 }}>
+                  You&apos;re officially on the list, {state.success && state.name ? state.name.split(' ')[0] : 'friend'}! 🎉
+                </h2>
+
+                {/* Primary body copy */}
+                <p style={{ fontFamily: 'Inter, sans-serif', color: '#434656', fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '1.125rem' }}>
+                  We are currently hand-crafting our AI mock interview engine. The second our MVP drops, we will reach out to this email to unlock your{' '}
+                  <strong style={{ color: '#0040e0' }}>3 free 1-minute interview sessions.</strong>
                 </p>
+
+                {/* Community hook */}
+                <p style={{ fontFamily: 'Inter, sans-serif', color: '#434656', fontSize: '0.85rem', lineHeight: 1.65, marginBottom: '1.5rem', padding: '0.75rem 1rem', background: 'rgba(88,101,242,0.06)', borderRadius: '0.625rem', border: '1px solid rgba(88,101,242,0.14)' }}>
+                  In the meantime, join our absolute zero-judgment builder space on Discord to pitch feature requests, vote on mechanics, and talk directly with us!
+                </p>
+
+                {/* Discord CTA button */}
+                <a
+                  href="https://discord.gg/RddwEq4DUc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="discord-cta-btn"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.75rem',
+                    width: '100%',
+                    padding: '0.875rem 1.5rem',
+                    borderRadius: '0.75rem',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 600,
+                    fontSize: '0.9375rem',
+                    color: '#ffffff',
+                    background: '#5865F2',
+                    textDecoration: 'none',
+                    boxShadow: '0 4px 16px rgba(88,101,242,0.35)',
+                    transition: 'background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease',
+                    WebkitTapHighlightColor: 'transparent',
+                    touchAction: 'manipulation',
+                    boxSizing: 'border-box',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = '#4752C4';
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 6px 20px rgba(88,101,242,0.45)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLAnchorElement).style.background = '#5865F2';
+                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 16px rgba(88,101,242,0.35)';
+                  }}
+                  onMouseDown={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(0.97)'; }}
+                  onMouseUp={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)'; }}
+                >
+                  {/* Discord Clyde SVG */}
+                  <svg style={{ width: '1.25rem', height: '1.25rem', fill: 'currentColor', flexShrink: 0 }} viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.72-10.93,68.6,68.6,0,0,1-10.64-5.12c.91-.67,1.81-1.37,2.65-2.1a75.22,75.22,0,0,0,72.76,0c.84.73,1.74,1.43,2.65,2.1a68.86,68.86,0,0,1-10.64,5.12,74.74,74.74,0,0,0,6.72,10.93,105.73,105.73,0,0,0,31-18.83C129.07,49.8,122.93,26.91,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" />
+                  </svg>
+                  Join Mockiew AI Discord
+                </a>
               </div>
             ) : (
               /* ── Form — using action prevents JS-reliance ── */
@@ -169,7 +225,7 @@ export function HeroForm() {
                   <label htmlFor="wl-profession" style={LABEL}>Your Role</label>
                   <input
                     id="wl-profession" name="profession" type="text" autoComplete="organization-title" required
-                    placeholder="e.g. Student, Professor, Project Manager"
+                    placeholder="e.g. Student, HR, Professor, Project Manager"
                     className="wl-input"
                     style={inputStyle()}
                   />
